@@ -6,7 +6,7 @@
 /*   By: tjorge-l < tjorge-l@student.42lisboa.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:50:23 by tjorge-l          #+#    #+#             */
-/*   Updated: 2025/01/08 14:41:23 by tjorge-l         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:09:49 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,42 +77,81 @@
 // 	return (0);
 // }
 
+//////////////////////////////////////////
 // Simulating the pipe "|" operator in C 
+//////////////////////////////////////////
+// int	main(void)
+// {
+// 	int fd[2];
+// 	int	pid1;
+// 	int	pid2; 
+
+// 	if (pipe(fd) == -1)
+// 		return (1);
+// 	pid1 = fork();
+// 	if (pid1 == -1)
+// 		return 2;
+// 	if (pid1 == 0)
+// 	{	// Child process 1 (ping)
+// 		close(fd[0]);
+// 		dup2(fd[1], STDOUT_FILENO);
+// 		close(fd[1]);
+// 		execlp("ping", "ping", "-c", "5", "google.com", NULL);
+// 	}
+
+// 	pid2 = fork();
+// 	if (pid2 == -1)
+// 		return (3);
+
+// 	if (pid2 == 0)
+// 	{	// Child process 2 (grep)
+// 		close(fd[1]);
+// 		dup2(fd[0], STDIN_FILENO);
+// 		close(fd[0]);
+// 		execlp("grep", "grep", "rtt", NULL);
+// 	}
+
+// 	close(fd[0]);
+// 	close(fd[1]);
+// 	waitpid(pid1, NULL, 0);
+// 	waitpid(pid2, NULL, 0);
+// 	return (0);
+// }
+
+
+//////////////////////////////////////////
+// The fork() function in C
+//////////////////////////////////////////
 
 int	main(void)
 {
-	int fd[2];
-	int	pid1;
-	int	pid2; 
+	// int	id;
+	// id = fork();
 
-	if (pipe(fd) == -1)
-		return (1);
-	pid1 = fork();
-	if (pid1 == -1)
-		return 2;
-	if (pid1 == 0)
-	{	// Child process 1 (ping)
-		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[1]);
-		execlp("ping", "ping", "-c", "5", "google.com", NULL);
-	}
+	// 4 end processes:
+	// fork();
+	// Parent and child process is created.
+	// fork();
+	// Original process generates a second child process
+	// Original child generates a child process
+	// Original Parent + Original Child + Second Child + Original child's child
 
-	pid2 = fork();
-	if (pid2 == -1)
-		return (3);
+	// 3 end processes
+	int	id;
 
-	if (pid2 == 0)
-	{	// Child process 2 (grep)
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-		execlp("grep", "grep", "rtt", NULL);
-	}
+	id = fork();
+	if (id != 0)
+		fork();
+	printf("Hello world!\n");
+	
+	// n times fork = 2^n processes "
 
-	close(fd[0]);
-	close(fd[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	// printf("Hello world from id: %d\n", id);
+	// if (id == 0)
+	// 	printf("Hello from the child process.\n");
+	// else
+	// 	printf("Hello from the main process.\n");
+
+
 	return (0);
 }
