@@ -6,7 +6,7 @@
 /*   By: tjorge-l < tjorge-l@student.42lisboa.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:50:23 by tjorge-l          #+#    #+#             */
-/*   Updated: 2025/01/08 15:09:49 by tjorge-l         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:24:56 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,35 +123,65 @@
 // The fork() function in C
 //////////////////////////////////////////
 
-int	main(void)
+// int	main(void)
+// {
+// 	// int	id;
+// 	// id = fork();
+
+// 	// 4 end processes:
+// 	// fork();
+// 	// Parent and child process is created.
+// 	// fork();
+// 	// Original process generates a second child process
+// 	// Original child generates a child process
+// 	// Original Parent + Original Child + Second Child + Original child's child
+
+// 	// 3 end processes
+// 	int	id;
+
+// 	id = fork();
+// 	if (id != 0)
+// 		fork();
+// 	printf("Hello world!\n");
+	
+// 	// n times fork = 2^n processes "
+
+// 	// printf("Hello world from id: %d\n", id);
+// 	// if (id == 0)
+// 	// 	printf("Hello from the child process.\n");
+// 	// else
+// 	// 	printf("Hello from the main process.\n");
+
+
+// 	return (0);
+// }
+
+//////////////////////////////////////////
+// Waiting for processes to finish 
+// (using the wait function) in C
+//////////////////////////////////////////
+
+int main(void)
 {
-	// int	id;
-	// id = fork();
-
-	// 4 end processes:
-	// fork();
-	// Parent and child process is created.
-	// fork();
-	// Original process generates a second child process
-	// Original child generates a child process
-	// Original Parent + Original Child + Second Child + Original child's child
-
-	// 3 end processes
 	int	id;
+	int	n;
+	int	i;
 
 	id = fork();
+	if (id == 0)
+		n = 1;
+	else
+		n = 6;
 	if (id != 0)
-		fork();
-	printf("Hello world!\n");
-	
-	// n times fork = 2^n processes "
-
-	// printf("Hello world from id: %d\n", id);
-	// if (id == 0)
-	// 	printf("Hello from the child process.\n");
-	// else
-	// 	printf("Hello from the main process.\n");
-
-
+		wait(NULL);
+	i = n;
+	while (i < n + 5)
+	{
+		printf("%d ", i);
+		fflush(stdout);
+		i++;
+	}
+	if (id != 0)
+		printf("\n");
 	return (0);
 }
