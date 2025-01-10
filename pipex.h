@@ -6,7 +6,7 @@
 /*   By: tjorge-l < tjorge-l@student.42lisboa.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:50:39 by tjorge-l          #+#    #+#             */
-/*   Updated: 2025/01/08 12:29:47 by tjorge-l         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:47:06 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <errno.h>
+# define _GNU_SOURCE
 #endif
